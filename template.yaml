@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  lambda-insultbot
+
+  Flings a random Shakespeare-inspired insult
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Runtime: nodejs12.x
+    Timeout: 3
+    Environment:
+      Variables:
+        companyId: '{{resolve:ssm:/CompanyID/insultbot:1}}'
+
+Resources:
+  InsultbotFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: ./
+      Handler: app.lambdaHandler
+
+Outputs:
+  InsultbotFunction:
+    Description: 'Hello World Lambda Function ARN'
+    Value: !GetAtt InsultbotFunction.Arn
+  InsultbotFunctionIamRole:
+    Description: 'Implicit IAM Role created for Hello World function'
+    Value: !GetAtt InsultbotFunctionRole.Arn
