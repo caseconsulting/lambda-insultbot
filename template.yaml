@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  lambda-insultbot
+  insultbot
 
   Flings a random Shakespeare-inspired insult
 
@@ -15,28 +15,28 @@ Globals:
         companyId: '{{resolve:ssm:/CompanyID/insultbot:1}}'
 
 Resources:
-  InsultbotFunction:
+  InsultBotFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: ./
       Handler: app.lambdaHandler
       Events:
-        Insultbot:
+        InsultBot:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /insult
-            Method: get
+            Method: post
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  InsultbotApi:
-    Description: 'API Gateway endpoint URL for Prod stage for insultbot function'
+  InsultBotApi:
+    Description: 'API Gateway endpoint URL for Prod stage for InsultBot function'
     Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/'
-  InsultbotFunction:
-    Description: 'insultbot Lambda Function ARN'
-    Value: !GetAtt InsultbotFunction.Arn
-  InsultbotFunctionIamRole:
-    Description: 'Implicit IAM Role created for insultbot function'
-    Value: !GetAtt InsultbotFunctionRole.Arn
+  InsultBotFunction:
+    Description: 'InsultBot Lambda Function ARN'
+    Value: !GetAtt InsultBotFunction.Arn
+  InsultBotFunctionIamRole:
+    Description: 'Implicit IAM Role created for InsultBot function'
+    Value: !GetAtt InsultBotFunctionRole.Arn
