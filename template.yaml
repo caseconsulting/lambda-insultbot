@@ -14,7 +14,7 @@ Globals:
     Timeout: 3
     Environment:
       Variables:
-        companyId: '{{resolve:ssm:/CompanyID/insultbot:1}}'
+        companyId: '{{resolve:ssm:/Basecamp/CompanyID:1}}'
 
 Resources:
   InsultBotFunction:
