@@ -1,0 +1,11 @@
+{
+  "name": "lambda-insultbot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Flings a random Shakespeare-inspired insult",
+  "repository": "https://github.com/caseconsulting/lambda-gifbot",
+  "author": "Case Consulting",
+  "dependencies": {
+    "shakespeare-insult": "^1.0.0"
+  }
+}
