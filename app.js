@@ -17,15 +17,17 @@ exports.lambdaHandler = async (event, context) => {
     const insult = require('shakespeare-insult');
 
     const body = JSON.parse(event.body);
+    const subject = body.command;
     const companyId = body.creator.company.id;
 
     if (companyId == process.env.companyId) {
       const anInsult = insult.random();
+      const result = `${subject} is a ${anInsult}`;
       response = {
         statusCode: 200,
-        body: JSON.stringify(anInsult)
+        body: JSON.stringify(result)
       };
-      console.log('Sending this insult:', anInsult);
+      console.log('Sending this insult:', result);
     } else {
       response = {
         statusCode: 403,
