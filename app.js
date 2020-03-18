@@ -1,3 +1,5 @@
+'use strict';
+
 let response;
 
 /**
@@ -12,7 +14,7 @@ let response;
  * @returns {Object} object - API Gateway Lambda Proxy Output Format
  *
  */
-exports.lambdaHandler = async (event, context) => {
+exports.handler = async (event, context) => {
   try {
     const insult = require('shakespeare-insult');
 

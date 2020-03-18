@@ -63,12 +63,12 @@ sam-app$ curl http://localhost:3000/
 The SAM CLI reads the application template to determine the API's routes and the functions that they invoke. The `Events` property on each function's definition includes the route and method for each path.
 
 ```yaml
-      Events:
-        Insultbot:
-          Type: Api
-          Properties:
-            Path: /insult
-            Method: get
+Events:
+  Insultbot:
+    Type: Api
+    Properties:
+      Path: /
+      Method: post
 ```
 
 ## Add a resource to your application
@@ -89,7 +89,7 @@ You can find more information and examples about filtering Lambda function logs 
 
 ## Cleanup
 
-To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
+To delete the application, use the AWS CLI and run the following:
 
 ```bash
 aws cloudformation delete-stack --stack-name lambda-insultbot

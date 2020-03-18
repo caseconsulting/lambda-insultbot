@@ -8,10 +8,13 @@ Description: >
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Api:
+    Name: insultbot
     EndpointConfiguration: REGIONAL
   Function:
     Runtime: nodejs12.x
     Timeout: 3
+    Tags:
+      Application: bots
     Environment:
       Variables:
         companyId: '{{resolve:ssm:/Basecamp/CompanyID:1}}'
@@ -20,14 +23,23 @@ Resources:
   InsultBotFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
+      FunctionName: insultbot
       CodeUri: ./
-      Handler: app.lambdaHandler
+      Handler: app.handler
+      Description: Flings a random Shakespeare-inspired insult
       Events:
         InsultBot:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /insult
+            Path: /
             Method: post
+  InsultBotFunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    DependsOn:
+      - InsultBotFunction
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${InsultBotFunction}
+      RetentionInDays: 30
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
