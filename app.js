@@ -27,7 +27,7 @@ exports.lambdaHandler = async (event, context) => {
         statusCode: 200,
         body
       };
-      console.log('Sending this insult:', result);
+      console.log('Sending this response:', body);
     } else {
       response = {
         statusCode: 403,
