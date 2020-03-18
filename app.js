@@ -22,8 +22,8 @@ exports.lambdaHandler = async (event, context) => {
 
     if (companyId == process.env.companyId) {
       const msg = insult.random();
-      var matched = msg.match('^[aieouAIEOU].*');
-      const result = `${subject} is ${matched ? 'an' : 'a'} ${insult.random()}.`;
+      const msgStartsWithVowel = msg.match('^[aieouAIEOU].*');
+      const result = `${subject} is ${msgStartsWithVowel ? 'an' : 'a'} ${msg}.`;
       response = {
         statusCode: 200,
         body: result
