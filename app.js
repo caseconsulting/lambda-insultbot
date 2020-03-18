@@ -39,7 +39,7 @@ exports.handler = async (event, context) => {
       console.log('Access Denied');
     }
   } catch (err) {
-    console.log(err);
+    console.log('Something went wrong:', err);
     return err;
   }
 
