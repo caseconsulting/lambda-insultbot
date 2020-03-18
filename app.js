@@ -21,16 +21,18 @@ exports.lambdaHandler = async (event, context) => {
     const companyId = body.creator.company.id;
 
     if (companyId == process.env.companyId) {
-      const body = `${subject} is a ${insult.random()}`;
+      const msg = insult.random();
+      var matched = msg.match('^[aieouAIEOU].*');
+      const result = `${subject} is ${matched ? 'an' : 'a'} ${insult.random()}.`;
       response = {
         statusCode: 200,
-        body
+        body: result
       };
-      console.log('Sending this response:', body);
+      console.log('Sending this response:', result);
     } else {
       response = {
         statusCode: 403,
-        body: 'Access Denied'
+        body: 'Your mother was a hamster, and your father smelt of elderberries.'
       };
       console.log('Access Denied');
     }
