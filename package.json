@@ -8,7 +8,7 @@
   "scripts": {
     "build": "sam build -t template.yaml",
     "deploy": "npm run build && sam deploy --template-file template.yaml",
-    "local": "npm run build && sam local invoke \"InsultbotFunction\" -e events/event.json"
+    "local": "npm run build && sam local invoke \"InsultBotFunction\" -e event.json"
   },
   "dependencies": {
     "shakespeare-insult": "^1.0.0"
