@@ -22,10 +22,10 @@ exports.lambdaHandler = async (event, context) => {
 
     if (companyId == process.env.companyId) {
       const anInsult = insult.random();
-      const result = `${subject} is a ${anInsult}`;
+      const body = `@${subject} is a ${anInsult}`;
       response = {
         statusCode: 200,
-        body: JSON.stringify(result)
+        body
       };
       console.log('Sending this insult:', result);
     } else {
