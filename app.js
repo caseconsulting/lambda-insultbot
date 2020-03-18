@@ -21,8 +21,7 @@ exports.lambdaHandler = async (event, context) => {
     const companyId = body.creator.company.id;
 
     if (companyId == process.env.companyId) {
-      const anInsult = insult.random();
-      const body = `@${subject} is a ${anInsult}`;
+      const body = `${subject} is a ${insult.random()}`;
       response = {
         statusCode: 200,
         body
