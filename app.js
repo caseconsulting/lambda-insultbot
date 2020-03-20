@@ -1,5 +1,7 @@
 'use strict';
 
+const insult = require('shakespeare-insult');
+
 let response;
 
 /**
@@ -16,16 +18,19 @@ let response;
  */
 exports.handler = async (event, context) => {
   try {
-    const insult = require('shakespeare-insult');
-
     const body = JSON.parse(event.body);
-    const subject = body.command;
     const companyId = body.creator.company.id;
 
     if (companyId == process.env.companyId) {
+      const subject = body.command;
+
+      const sgid = body.creator.attachable_sgid;
+      const creator = `<bc-attachment sgid="${sgid}"></bc-attachment>`;
+
       const msg = insult.random();
-      const msgStartsWithVowel = msg.match('^[aieouAIEOU].*');
-      const result = `${subject} is ${msgStartsWithVowel ? 'an' : 'a'} ${msg}.`;
+      const startsWithVowel = msg.match('^[aieouAIEOU].*');
+      const result = `${creator} says ${subject} is ${startsWithVowel ? 'an' : 'a'} ${msg}.`;
+
       response = {
         statusCode: 200,
         body: result
