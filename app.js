@@ -2,8 +2,6 @@
 
 const insult = require('shakespeare-insult');
 
-let response;
-
 /**
  *
  * Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
@@ -17,6 +15,8 @@ let response;
  *
  */
 exports.handler = async (event, context) => {
+  let response;
+
   try {
     const body = JSON.parse(event.body);
     const companyId = body.creator.company.id;
