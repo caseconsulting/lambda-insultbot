@@ -1,10 +1,10 @@
 {
   "name": "lambda-insultbot",
-  "version": "1.20.0",
+  "version": "1.21.0",
   "private": true,
   "description": "Flings a random Shakespeare-inspired insult",
   "repository": "https://github.com/caseconsulting/lambda-gifbot",
-  "author": "Case Consulting",
+  "author": "CASE",
   "scripts": {
     "build": "sam build -t template.yaml",
     "deploy": "npm run build && sam deploy --template-file template.yaml --region us-east-1 --capabilities CAPABILITY_IAM --s3-prefix lambda-insultbot --s3-bucket case-consulting-mgmt-sam-deployments --stack-name lambda-insultbot --profile mgmt",
