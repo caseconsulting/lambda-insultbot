@@ -1,6 +1,4 @@
-'use strict';
-
-const insult = require('shakespeare-insult');
+import insult from 'shakespeare-insult';
 
 /**
  *
@@ -14,7 +12,7 @@ const insult = require('shakespeare-insult');
  * @returns {Object} object - API Gateway Lambda Proxy Output Format
  *
  */
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
   let response;
 
   try {
