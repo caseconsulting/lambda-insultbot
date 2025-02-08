@@ -17,7 +17,7 @@ Globals:
       Application: bots
     Environment:
       Variables:
-        companyId: '<companyId>'
+        companyId: '{{resolve:ssm:/Basecamp/CompanyID:1}}'
 
 Resources:
   InsultBotFunction:
